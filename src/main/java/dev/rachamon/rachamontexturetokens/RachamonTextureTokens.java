@@ -24,7 +24,7 @@ import java.nio.file.Path;
 
 @Plugin(id = "rachamontexturetokens", name = "RachamonTextureTokens", description = "Simple Pixelmon Texture applier.", authors = {"Rachamon"})
 public class RachamonTextureTokens implements IRachamonPlugin {
-
+    private Components components;
     @Inject
     private Game game;
     @Inject
@@ -32,13 +32,15 @@ public class RachamonTextureTokens implements IRachamonPlugin {
     @Inject
     private Injector injector;
     @Inject
+    private Injector pluginInjector;
+    @Inject
     @ConfigDir(sharedRoot = false)
     private Path directory;
     @Inject
     private PluginContainer container;
     private LoggerUtil logger;
     private static RachamonTextureTokens instance;
-    private static boolean isInitialized = false;
+    private boolean isInitialized = false;
     private RachamonTextureTokensPluginManager pluginManager;
 
     @Listener
@@ -80,32 +82,32 @@ public class RachamonTextureTokens implements IRachamonPlugin {
 
     @Override
     public GuiceObjectMapperFactory getFactory() {
-        return null;
+        return this.factory;
     }
 
     @Override
     public Injector getSpongeInjector() {
-        return null;
+        return this.injector;
     }
 
     @Override
     public Game getGame() {
-        return null;
+        return this.game;
     }
 
     @Override
     public Path getDirectory() {
-        return null;
+        return this.directory;
     }
 
     @Override
     public PluginContainer getContainer() {
-        return null;
+        return this.container;
     }
 
     @Override
     public SpongeCommandService getCommandService() {
-        return null;
+        return SpongeCommandService.getInstance();
     }
 
     @Override
@@ -115,15 +117,51 @@ public class RachamonTextureTokens implements IRachamonPlugin {
 
     @Override
     public boolean isInitialized() {
-        return false;
+        return this.isInitialized;
     }
 
     @Override
     public void setInitialized(boolean isInitialized) {
+        this.isInitialized = isInitialized;
+    }
 
+    @Override
+    public void setPluginInjector(Injector injector) {
+        this.injector = injector;
+    }
+
+    @Override
+    public Injector getPluginInjector() {
+        return this.pluginInjector;
     }
 
     public static RachamonTextureTokens getInstance() {
         return instance;
+    }
+
+    /**
+     * Gets components.
+     *
+     * @return the components
+     */
+    public Components getComponents() {
+        return components;
+    }
+
+    /**
+     * Sets components.
+     *
+     * @param components the components
+     */
+    public void setComponents(Components components) {
+        this.components = components;
+    }
+
+    /**
+     * The type Components.
+     */
+    public static class Components {
+        @Inject
+        private RachamonTextureTokensPluginManager pluginManager;
     }
 }
