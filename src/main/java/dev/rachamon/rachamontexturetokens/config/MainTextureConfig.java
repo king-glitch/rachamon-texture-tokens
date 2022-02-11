@@ -15,6 +15,7 @@ public class MainTextureConfig {
     @Setting(value = "tokens", comment = "All Textures Tokens Key")
     protected Map<String, TextureToken> tokens = ImmutableMap.of("SpecialPikachu", new TextureToken());
 
+    @ConfigSerializable
     public static class TextureToken {
         @Setting(value = "item-id")
         protected String itemId;

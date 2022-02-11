@@ -25,6 +25,7 @@ public class RachamonTextureTokensPluginManager implements IRachamonPluginManage
 
     @Override
     public void preInitialize() {
+        Sponge.getEventManager().registerListeners(this, new PokemonTokenInteract());
 
     }
 
@@ -32,11 +33,11 @@ public class RachamonTextureTokensPluginManager implements IRachamonPluginManage
     public void postInitialize() {
         this.configureConfigs();
         this.registerCommands();
+
     }
 
     @Override
     public void start() {
-        Sponge.getEventManager().registerListeners(this, new PokemonTokenInteract());
     }
 
     @Override
@@ -49,6 +50,10 @@ public class RachamonTextureTokensPluginManager implements IRachamonPluginManage
         SpongeAPIConfigFactory<RachamonTextureTokens, MainConfig> config = new SpongeAPIConfigFactory<>(this.plugin, "main.conf");
         SpongeAPIConfigFactory<RachamonTextureTokens, MainLanguage> language = new SpongeAPIConfigFactory<>(this.plugin, "language.conf");
         SpongeAPIConfigFactory<RachamonTextureTokens, MainTextureConfig> textures = new SpongeAPIConfigFactory<>(this.plugin, "textures.conf");
+
+        this.plugin.setMainConfig(config);
+        this.plugin.setMainLanguage(language);
+        this.plugin.setMainTextures(textures);
 
         this.plugin.setConfig(config.setHeader("Main Config").setClazz(new MainConfig()).setClazzType(MainConfig.class).build());
         this.plugin.setLanguage(language.setHeader("Language Config").setClazz(new MainLanguage()).setClazzType(MainLanguage.class).build());
