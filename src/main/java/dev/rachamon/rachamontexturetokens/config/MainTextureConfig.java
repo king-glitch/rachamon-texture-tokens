@@ -18,7 +18,7 @@ public class MainTextureConfig {
     @ConfigSerializable
     public static class TextureToken {
         @Setting(value = "item-id")
-        protected String itemId;
+        protected String itemId = "minecraft:stick";
         @Setting(value = "item-display-name")
         protected String itemDisplayName = "&b&lPokemon Special Texture Token";
         @Setting(value = "item-lore")

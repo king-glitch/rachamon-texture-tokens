@@ -43,7 +43,8 @@ public class RachamonTextureTokenManager {
     public void giveTokens(Player source, String key, int amount) throws Exception {
 
         MainTextureConfig.TextureToken token = this.getTokenOrThrow(key);
-        ItemStack stack = ItemStack.of(getItemTypeOrThrow(token.getItemId()), amount);
+
+        ItemStack stack = ItemStack.of(this.getItemTypeOrThrow(token.getItemId()), amount);
         stack.offer(Keys.DISPLAY_NAME, TextUtil.toText(token.getItemDisplayName()));
         stack.offer(Keys.ITEM_DURABILITY, 1000);
 

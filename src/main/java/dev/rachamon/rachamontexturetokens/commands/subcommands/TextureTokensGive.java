@@ -26,12 +26,12 @@ public class TextureTokensGive implements ICommand, IParameterizedCommand {
         Optional<Player> _player = args.getOne("name");
         Optional<Integer> _amount = args.getOne("amount");
 
-        if (!_token.isPresent() || !_player.isPresent()) {
+        if (!_token.isPresent()) {
             return CommandResult.empty();
         }
 
         String token = _token.get();
-        Player player = _player.get();
+        Player player = _player.orElseGet(() -> (Player) source);
         int amount = _amount.orElse(1);
 
         try {
