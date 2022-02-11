@@ -3,9 +3,14 @@ package dev.rachamon.rachamontexturetokens;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 import dev.rachamon.api.sponge.command.SpongeCommandService;
+import dev.rachamon.api.sponge.config.SpongeAPIConfigFactory;
 import dev.rachamon.api.sponge.implement.plugin.IRachamonPlugin;
 import dev.rachamon.api.sponge.implement.plugin.IRachamonPluginManager;
 import dev.rachamon.api.sponge.util.LoggerUtil;
+import dev.rachamon.rachamontexturetokens.config.MainConfig;
+import dev.rachamon.rachamontexturetokens.config.MainLanguage;
+import dev.rachamon.rachamontexturetokens.config.MainTextureConfig;
+import dev.rachamon.rachamontexturetokens.managers.RachamonTextureTokenManager;
 import dev.rachamon.rachamontexturetokens.managers.RachamonTextureTokensPluginManager;
 import ninja.leaping.configurate.objectmapping.GuiceObjectMapperFactory;
 import org.spongepowered.api.Game;
@@ -17,12 +22,15 @@ import org.spongepowered.api.event.game.state.GameInitializationEvent;
 import org.spongepowered.api.event.game.state.GamePostInitializationEvent;
 import org.spongepowered.api.event.game.state.GamePreInitializationEvent;
 import org.spongepowered.api.event.game.state.GameStartedServerEvent;
+import org.spongepowered.api.plugin.Dependency;
 import org.spongepowered.api.plugin.Plugin;
 import org.spongepowered.api.plugin.PluginContainer;
 
 import java.nio.file.Path;
 
-@Plugin(id = "rachamontexturetokens", name = "RachamonTextureTokens", description = "Simple Pixelmon Texture applier.", authors = {"Rachamon"})
+@Plugin(id = "rachamontexturetokens", name = "RachamonTextureTokens", description = "Simple Pixelmon Texture applier.", authors = {"Rachamon"}, dependencies = {
+        @Dependency(id = "pixelmon")
+})
 public class RachamonTextureTokens implements IRachamonPlugin {
     private Components components;
     @Inject
@@ -42,6 +50,13 @@ public class RachamonTextureTokens implements IRachamonPlugin {
     private static RachamonTextureTokens instance;
     private boolean isInitialized = false;
     private RachamonTextureTokensPluginManager pluginManager;
+
+    private SpongeAPIConfigFactory<RachamonTextureTokens, MainConfig> config;
+    private SpongeAPIConfigFactory<RachamonTextureTokens, MainLanguage> language;
+    private SpongeAPIConfigFactory<RachamonTextureTokens, MainTextureConfig> textures;
+
+    public RachamonTextureTokens() {
+    }
 
     @Listener
     public void onPreInitialize(GamePreInitializationEvent event) {
@@ -157,11 +172,55 @@ public class RachamonTextureTokens implements IRachamonPlugin {
         this.components = components;
     }
 
+    public SpongeAPIConfigFactory<RachamonTextureTokens, MainConfig> getConfig() {
+        return config;
+    }
+
+    public void setConfig(MainConfig config) {
+        this.config.setClazz(config);
+    }
+
+    public void setLanguage(MainLanguage language) {
+        this.language.setClazz(language);
+    }
+
+    public MainLanguage getLanguage() {
+        return this.language.getRoot();
+    }
+
+    public void setTextures(MainTextureConfig config) {
+        this.textures.setClazz(config);
+    }
+
+    public void setMainConfig(SpongeAPIConfigFactory<RachamonTextureTokens, MainConfig> config) {
+        this.config = config;
+    }
+
+    public SpongeAPIConfigFactory<RachamonTextureTokens, MainLanguage> getLanguageManager() {
+        return language;
+    }
+
+    public void setMainLanguage(SpongeAPIConfigFactory<RachamonTextureTokens, MainLanguage> language) {
+        this.language = language;
+    }
+
+    public SpongeAPIConfigFactory<RachamonTextureTokens, MainTextureConfig> getTextures() {
+        return textures;
+    }
+
+    public void setMainTextures(SpongeAPIConfigFactory<RachamonTextureTokens, MainTextureConfig> textures) {
+        this.textures = textures;
+    }
+
+    public RachamonTextureTokenManager getRachamonTextureTokenManager() {
+        return this.getComponents().textureTokensManager;
+    }
+
     /**
      * The type Components.
      */
     public static class Components {
         @Inject
-        private RachamonTextureTokensPluginManager pluginManager;
+        private RachamonTextureTokenManager textureTokensManager;
     }
 }
