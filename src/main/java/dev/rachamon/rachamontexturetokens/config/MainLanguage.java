@@ -3,16 +3,34 @@ package dev.rachamon.rachamontexturetokens.config;
 import ninja.leaping.configurate.objectmapping.Setting;
 import ninja.leaping.configurate.objectmapping.serialize.ConfigSerializable;
 
+/**
+ * The type Main language.
+ */
 @ConfigSerializable
 public class MainLanguage {
 
+    /**
+     * Instantiates a new Main language.
+     */
     public MainLanguage() {
     }
 
+    /**
+     * The General category.
+     */
     protected GeneralCategory generalCategory = new GeneralCategory();
+    /**
+     * The Command category.
+     */
     protected CommandCategory commandCategory = new CommandCategory();
 
+    /**
+     * The type General category.
+     */
     public static class GeneralCategory {
+        /**
+         * The Pokemon doesnt have texture.
+         */
         @Setting(value = "pokemon-doesnt-have-texture", comment = "Message when apply token on wrong pokemon\n" +
                 "variables:\n" +
                 " - {token}: token name\n" +
@@ -21,89 +39,187 @@ public class MainLanguage {
                 "variables:\n" +
                 " - {token}: token name\n" +
                 " - {pokemon}: pokemon name";
+        /**
+         * The Pokemon already has texture.
+         */
         @Setting(value = "pokemon-already-has-texture", comment = "Message when apply token key with same pokemon with the same texture")
         protected String pokemonAlreadyHasTexture = "This pokemon already has this texture!";
+        /**
+         * The Successfully apply texture on pokemon.
+         */
         @Setting(value = "successfully-apply-texture-on-pokemon", comment = "Message when apply token successfully\n+" +
                 "variables:\n" +
                 " - {token}: token name\n" +
                 " - {pokemon}: pokemon name")
         protected String successfullyApplyTextureOnPokemon = "Successfully apply {token} token on {pokemon}";
+        /**
+         * The Successfully retrieve token.
+         */
         @Setting(value = "successfully-retrieve-token", comment = "message when retrieved token\n" +
                 "variables:\n" +
                 " - {token}: token name")
         protected String successfullyRetrieveToken = "You successfully retrieved {token} token!";
+        /**
+         * The Successfully send token.
+         */
         @Setting(value = "successfully-send-token", comment = "message when token was sent to another player\n" +
                 "variables:\n" +
                 " - {token}: token name\n" +
                 " - {player}: player name")
         protected String successfullySendToken = "You successfully sent {token} token to {player}";
+        /**
+         * The Invalid token usage.
+         */
         @Setting(value = "invalid-token-usage", comment = "Message token was wrongly used.")
         protected String invalidTokenUsage = "Invalid Token Usage";
+        /**
+         * The Invalid token key.
+         */
         @Setting(value = "invalid-token-key", comment = "Message wrong token key")
         protected String invalidTokenKey = "Invalid token key, please check the config key name";
+        /**
+         * The Token no longer valid.
+         */
         @Setting(value = "token-no-longer-valid", comment = "Message when token is invalid")
         protected String tokenNoLongerValid = "This token is no longer valid";
+        /**
+         * The Player is not online nor invalid.
+         */
         @Setting(value = "player-is-not-online-or-invalid", comment = "Message player is not online or invalid")
         protected String playerIsNotOnlineNorInvalid = "Invalid Player, please make sure they're online.";
+        /**
+         * The Cant use on shiny pokemon.
+         */
         @Setting(value = "cant-use-on-shiny-pokemon", comment = "Message when apply token on shiny pokemon")
         protected String cantUseOnShinyPokemon = "This pokemon is shiny, you can't apply this texture to a shiny";
 
+        /**
+         * Gets pokemon doesnt have texture.
+         *
+         * @return the pokemon doesnt have texture
+         */
         public String getPokemonDoesntHaveTexture() {
             return pokemonDoesntHaveTexture;
         }
 
+        /**
+         * Gets pokemon already has texture.
+         *
+         * @return the pokemon already has texture
+         */
         public String getPokemonAlreadyHasTexture() {
             return pokemonAlreadyHasTexture;
         }
 
+        /**
+         * Gets successfully apply texture on pokemon.
+         *
+         * @return the successfully apply texture on pokemon
+         */
         public String getSuccessfullyApplyTextureOnPokemon() {
             return successfullyApplyTextureOnPokemon;
         }
 
+        /**
+         * Gets successfully retrieve token.
+         *
+         * @return the successfully retrieve token
+         */
         public String getSuccessfullyRetrieveToken() {
             return successfullyRetrieveToken;
         }
 
+        /**
+         * Gets successfully send token.
+         *
+         * @return the successfully send token
+         */
         public String getSuccessfullySendToken() {
             return successfullySendToken;
         }
 
+        /**
+         * Gets invalid token usage.
+         *
+         * @return the invalid token usage
+         */
         public String getInvalidTokenUsage() {
             return invalidTokenUsage;
         }
 
+        /**
+         * Gets invalid token key.
+         *
+         * @return the invalid token key
+         */
         public String getInvalidTokenKey() {
             return invalidTokenKey;
         }
 
+        /**
+         * Gets token no longer valid.
+         *
+         * @return the token no longer valid
+         */
         public String getTokenNoLongerValid() {
             return tokenNoLongerValid;
         }
 
+        /**
+         * Gets player is not online nor invalid.
+         *
+         * @return the player is not online nor invalid
+         */
         public String getPlayerIsNotOnlineNorInvalid() {
             return playerIsNotOnlineNorInvalid;
         }
 
+        /**
+         * Gets cant use on shiny pokemon.
+         *
+         * @return the cant use on shiny pokemon
+         */
         public String getCantUseOnShinyPokemon() {
             return cantUseOnShinyPokemon;
         }
     }
 
+    /**
+     * The type Command category.
+     */
     static class CommandCategory {
 
+        /**
+         * The Successfully reloaded config.
+         */
         @Setting(value = "successfully-reloaded-config", comment = "Message reloaded configs")
         protected String successfullyReloadedConfig = "Successfully reloaded Configs";
 
+        /**
+         * Gets successfully reloaded config.
+         *
+         * @return the successfully reloaded config
+         */
         public String getSuccessfullyReloadedConfig() {
             return successfullyReloadedConfig;
         }
 
     }
 
+    /**
+     * Gets general category.
+     *
+     * @return the general category
+     */
     public GeneralCategory getGeneralCategory() {
         return generalCategory;
     }
 
+    /**
+     * Gets command category.
+     *
+     * @return the command category
+     */
     public CommandCategory getCommandCategory() {
         return commandCategory;
     }

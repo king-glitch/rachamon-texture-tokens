@@ -28,6 +28,9 @@ import org.spongepowered.api.plugin.PluginContainer;
 
 import java.nio.file.Path;
 
+/**
+ * The type Rachamon texture tokens.
+ */
 @Plugin(id = "rachamontexturetokens", name = "RachamonTextureTokens", description = "Simple Pixelmon Texture applier.", authors = {"Rachamon"}, dependencies = {
         @Dependency(id = "pixelmon")
 })
@@ -55,9 +58,17 @@ public class RachamonTextureTokens implements IRachamonPlugin {
     private SpongeAPIConfigFactory<RachamonTextureTokens, MainLanguage> language;
     private SpongeAPIConfigFactory<RachamonTextureTokens, MainTextureConfig> textures;
 
+    /**
+     * Instantiates a new Rachamon texture tokens.
+     */
     public RachamonTextureTokens() {
     }
 
+    /**
+     * On pre initialize.
+     *
+     * @param event the event
+     */
     @Listener
     public void onPreInitialize(GamePreInitializationEvent event) {
         instance = this;
@@ -66,12 +77,22 @@ public class RachamonTextureTokens implements IRachamonPlugin {
         this.getLogger().info("On Pre Initialize YanamiBot...");
     }
 
+    /**
+     * On initialize.
+     *
+     * @param event the event
+     */
     @Listener(order = Order.EARLY)
     public void onInitialize(GameInitializationEvent event) {
         getInstance().getLogger().info("On Initialize YanamiBot...");
         getInstance().getPluginManager().initialize();
     }
 
+    /**
+     * On start.
+     *
+     * @param event the event
+     */
     @Listener
     public void onStart(GameStartedServerEvent event) {
         if (!this.isInitialized()) return;
@@ -79,6 +100,11 @@ public class RachamonTextureTokens implements IRachamonPlugin {
         getInstance().getPluginManager().start();
     }
 
+    /**
+     * On post initialize.
+     *
+     * @param event the event
+     */
     @Listener
     public void onPostInitialize(GamePostInitializationEvent event) {
         getInstance().getLogger().info("On Post Initialize YanamiBot");
@@ -150,6 +176,11 @@ public class RachamonTextureTokens implements IRachamonPlugin {
         return this.pluginInjector;
     }
 
+    /**
+     * Gets instance.
+     *
+     * @return the instance
+     */
     public static RachamonTextureTokens getInstance() {
         return instance;
     }
@@ -172,46 +203,101 @@ public class RachamonTextureTokens implements IRachamonPlugin {
         this.components = components;
     }
 
+    /**
+     * Gets config.
+     *
+     * @return the config
+     */
     public SpongeAPIConfigFactory<RachamonTextureTokens, MainConfig> getConfig() {
         return config;
     }
 
+    /**
+     * Sets config.
+     *
+     * @param config the config
+     */
     public void setConfig(MainConfig config) {
         this.config.setClazz(config);
     }
 
+    /**
+     * Sets language.
+     *
+     * @param language the language
+     */
     public void setLanguage(MainLanguage language) {
         this.language.setClazz(language);
     }
 
+    /**
+     * Gets language.
+     *
+     * @return the language
+     */
     public MainLanguage getLanguage() {
         return this.language.getRoot();
     }
 
+    /**
+     * Sets textures.
+     *
+     * @param config the config
+     */
     public void setTextures(MainTextureConfig config) {
         this.textures.setClazz(config);
     }
 
+    /**
+     * Sets main config.
+     *
+     * @param config the config
+     */
     public void setMainConfig(SpongeAPIConfigFactory<RachamonTextureTokens, MainConfig> config) {
         this.config = config;
     }
 
+    /**
+     * Gets language manager.
+     *
+     * @return the language manager
+     */
     public SpongeAPIConfigFactory<RachamonTextureTokens, MainLanguage> getLanguageManager() {
         return language;
     }
 
+    /**
+     * Sets main language.
+     *
+     * @param language the language
+     */
     public void setMainLanguage(SpongeAPIConfigFactory<RachamonTextureTokens, MainLanguage> language) {
         this.language = language;
     }
 
+    /**
+     * Gets textures.
+     *
+     * @return the textures
+     */
     public SpongeAPIConfigFactory<RachamonTextureTokens, MainTextureConfig> getTextures() {
         return textures;
     }
 
+    /**
+     * Sets main textures.
+     *
+     * @param textures the textures
+     */
     public void setMainTextures(SpongeAPIConfigFactory<RachamonTextureTokens, MainTextureConfig> textures) {
         this.textures = textures;
     }
 
+    /**
+     * Gets rachamon texture token manager.
+     *
+     * @return the rachamon texture token manager
+     */
     public RachamonTextureTokenManager getRachamonTextureTokenManager() {
         return this.getComponents().textureTokensManager;
     }

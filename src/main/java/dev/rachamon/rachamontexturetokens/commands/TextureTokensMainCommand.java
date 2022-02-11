@@ -11,6 +11,9 @@ import org.spongepowered.api.command.args.CommandContext;
 
 import javax.annotation.Nonnull;
 
+/**
+ * The type Texture tokens main command.
+ */
 @ICommandChildren({
         TextureTokensGive.class,
         TextureTokensReload.class

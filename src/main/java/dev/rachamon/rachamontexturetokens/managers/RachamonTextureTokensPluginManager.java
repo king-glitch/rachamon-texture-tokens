@@ -12,6 +12,9 @@ import dev.rachamon.rachamontexturetokens.config.MainTextureConfig;
 import dev.rachamon.rachamontexturetokens.listeners.PokemonTokenInteract;
 import org.spongepowered.api.Sponge;
 
+/**
+ * The type Rachamon texture tokens plugin manager.
+ */
 public class RachamonTextureTokensPluginManager implements IRachamonPluginManager {
     private final RachamonTextureTokens plugin = RachamonTextureTokens.getInstance();
 
@@ -20,13 +23,12 @@ public class RachamonTextureTokensPluginManager implements IRachamonPluginManage
         this.plugin.setComponents(new RachamonTextureTokens.Components());
         this.plugin.setPluginInjector(this.plugin.getSpongeInjector().createChildInjector(new RachamonTextureTokensModule()));
         this.plugin.getSpongeInjector().injectMembers(this.plugin.getComponents());
+        Sponge.getEventManager().registerListeners(this.plugin, new PokemonTokenInteract());
         this.plugin.setInitialized(true);
     }
 
     @Override
     public void preInitialize() {
-        Sponge.getEventManager().registerListeners(this, new PokemonTokenInteract());
-
     }
 
     @Override
@@ -45,6 +47,9 @@ public class RachamonTextureTokensPluginManager implements IRachamonPluginManage
 
     }
 
+    /**
+     * Configure configs.
+     */
     public void configureConfigs() {
 
         SpongeAPIConfigFactory<RachamonTextureTokens, MainConfig> config = new SpongeAPIConfigFactory<>(this.plugin, "main.conf");
@@ -60,6 +65,9 @@ public class RachamonTextureTokensPluginManager implements IRachamonPluginManage
         this.plugin.setTextures(textures.setHeader("Pokemon Textures Config").setClazz(new MainTextureConfig()).setClazzType(MainTextureConfig.class).build());
     }
 
+    /**
+     * Register commands.
+     */
     public void registerCommands() {
         try {
             this.plugin.getCommandService().register(new TextureTokensMainCommand(), this.plugin);

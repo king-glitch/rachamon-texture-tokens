@@ -9,6 +9,9 @@ import org.spongepowered.api.command.args.CommandElement;
 
 import javax.annotation.Nonnull;
 
+/**
+ * The type Texture tokens reload.
+ */
 @ICommandDescription("reload the plugin")
 @ICommandAliases({"reload"})
 @ICommandPermission("rachamontexturetokens.command.reload")

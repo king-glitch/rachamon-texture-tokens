@@ -1,5 +1,6 @@
 package dev.rachamon.rachamontexturetokens.listeners;
 
+import com.pixelmonmod.pixelmon.entities.pixelmon.EntityPixelmon;
 import dev.rachamon.rachamontexturetokens.RachamonTextureTokens;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.DataQuery;
@@ -10,19 +11,23 @@ import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.entity.InteractEntityEvent;
 import org.spongepowered.api.event.filter.cause.Root;
 import org.spongepowered.api.item.inventory.ItemStack;
-
 import java.util.Optional;
 
+
+/**
+ * The type Pokemon token interact.
+ */
 public class PokemonTokenInteract {
 
+    /**
+     * On token pokemon interact.
+     *
+     * @param event  the event
+     * @param player the player
+     */
     @Listener
     public void onTokenPokemonInteract(InteractEntityEvent event, @Root Player player) {
-        RachamonTextureTokens.getInstance().getLogger().info(event.getTargetEntity().toString());
-
         Optional<EntityType> _pixelmon = Sponge.getRegistry().getAllOf(EntityType.class).stream().filter(entity -> entity.getId().equals(event.getTargetEntity().getType().getId())).findFirst();
-
-        RachamonTextureTokens.getInstance().getLogger().info(_pixelmon.toString());
-
         if (!_pixelmon.isPresent()) {
             RachamonTextureTokens.getInstance().getLogger().info("No Pixelmon Entity");
             return;
@@ -30,7 +35,6 @@ public class PokemonTokenInteract {
 
         EntityType pixelmon = _pixelmon.get();
 
-        RachamonTextureTokens.getInstance().getLogger().info(pixelmon.toString());
 
         Optional<ItemStack> itemStack = player.getItemInHand(HandTypes.MAIN_HAND);
         try {
@@ -46,7 +50,7 @@ public class PokemonTokenInteract {
         if (!itemStack.get().toContainer().get(DataQuery.of("RachamonTextureToken")).isPresent()) {
             return;
         }
-
+//
 //        if (pixelmon.getPokemonData().getOwnerPlayerUUID() == null || pixelmon.getPokemonData().getOwnerPlayerUUID() != player.getUniqueId()) {
 //            return;
 //        }

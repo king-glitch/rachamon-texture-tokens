@@ -19,11 +19,21 @@ import org.spongepowered.api.text.Text;
 import java.util.ArrayList;
 import java.util.Optional;
 
+/**
+ * The type Rachamon texture token manager.
+ */
 public class RachamonTextureTokenManager {
 
     private final RachamonTextureTokens plugin = RachamonTextureTokens.getInstance();
 
 
+    /**
+     * Gets token or throw.
+     *
+     * @param key the key
+     * @return the token or throw
+     * @throws Exception the exception
+     */
     public MainTextureConfig.TextureToken getTokenOrThrow(String key) throws Exception {
         MainTextureConfig.TextureToken token = this.plugin.getTextures().getRoot().getTokens().get(key);
         if (token == null) {
@@ -32,6 +42,13 @@ public class RachamonTextureTokenManager {
         return token;
     }
 
+    /**
+     * Gets item type or throw.
+     *
+     * @param id the id
+     * @return the item type or throw
+     * @throws Exception the exception
+     */
     public ItemType getItemTypeOrThrow(String id) throws Exception {
         Optional<ItemType> item = Sponge.getRegistry().getType(ItemType.class, id);
         if (!item.isPresent()) {
@@ -40,6 +57,14 @@ public class RachamonTextureTokenManager {
         return item.get();
     }
 
+    /**
+     * Give tokens.
+     *
+     * @param source the source
+     * @param key    the key
+     * @param amount the amount
+     * @throws Exception the exception
+     */
     public void giveTokens(Player source, String key, int amount) throws Exception {
 
         MainTextureConfig.TextureToken token = this.getTokenOrThrow(key);
@@ -57,7 +82,8 @@ public class RachamonTextureTokenManager {
         stack.offer(Keys.ITEM_LORE, realLore);
 
         DataContainer container = stack.toContainer();
-        container.set(DataQuery.of("UnsafeData", "TextureTokens", "pokemonAllowed"), token.getPokemonAllowed());
+        container.set(DataQuery.of("UnsafeData", "TextureTokens", "pokemon"), token.getPokemonAllowed());
+        container.set(DataQuery.of("UnsafeData", "TextureTokens", "texture"), token.getCustomTexture());
 
         stack = ItemStack.builder().fromContainer(container).build();
 

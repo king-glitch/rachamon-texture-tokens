@@ -14,6 +14,9 @@ import org.spongepowered.api.text.Text;
 import javax.annotation.Nonnull;
 import java.util.Optional;
 
+/**
+ * The type Texture tokens give.
+ */
 @ICommandDescription("give player tokens")
 @ICommandAliases({"give"})
 @ICommandPermission("rachamontexturetokens.command.give")

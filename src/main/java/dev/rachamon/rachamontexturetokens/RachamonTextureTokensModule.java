@@ -4,6 +4,9 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Scopes;
 import dev.rachamon.rachamontexturetokens.managers.RachamonTextureTokenManager;
 
+/**
+ * The type Rachamon texture tokens module.
+ */
 public class RachamonTextureTokensModule extends AbstractModule {
     @Override
     protected void configure() {

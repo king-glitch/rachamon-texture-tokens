@@ -3,6 +3,9 @@ package dev.rachamon.rachamontexturetokens.config;
 import ninja.leaping.configurate.objectmapping.Setting;
 import ninja.leaping.configurate.objectmapping.serialize.ConfigSerializable;
 
+/**
+ * The type Main config.
+ */
 @ConfigSerializable
 public class MainConfig {
     @Setting(value = "general", comment = "General Settings")
