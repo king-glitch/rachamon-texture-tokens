@@ -12,6 +12,8 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class GetTexturesKeyCommandElement extends CommandElement {
     public GetTexturesKeyCommandElement(@Nullable Text key) {
@@ -21,12 +23,20 @@ public class GetTexturesKeyCommandElement extends CommandElement {
     @Nullable
     @Override
     protected String parseValue(@Nonnull CommandSource source, @Nonnull CommandArgs args) throws ArgumentParseException {
+
         return args.next();
     }
 
     @Nonnull
     @Override
     public List<String> complete(@Nonnull CommandSource src, @Nonnull CommandArgs args, @Nonnull CommandContext context) {
-        return new ArrayList<>(RachamonTextureTokens.getInstance().getTextures().getRoot().getTokens().keySet());
+        Set<String> keys = RachamonTextureTokens.getInstance().getTextures().getRoot().getTokens().keySet();
+        try {
+            String next = args.next();
+            return keys.stream().filter(key -> key.startsWith(next)).collect(Collectors.toList());
+        } catch (ArgumentParseException e) {
+            e.printStackTrace();
+        }
+        return new ArrayList<>(keys);
     }
 }

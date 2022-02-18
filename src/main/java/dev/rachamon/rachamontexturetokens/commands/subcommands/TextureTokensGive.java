@@ -41,15 +41,23 @@ public class TextureTokensGive implements ICommand, IParameterizedCommand {
 
         try {
             RachamonTextureTokens.getInstance().getRachamonTextureTokenManager().giveTokens(player, token, amount);
-            RachamonTextureTokens.getInstance().sendMessage(source, RachamonTextureTokens
+            RachamonTextureTokens
                     .getInstance()
-                    .getLanguage()
-                    .getCommandCategory()
-                    .getSuccessfullySendToken()
-                    .replaceAll("\\{player}", player.getName())
-                    .replaceAll("\\{token}", token));
+                    .sendMessage(source, RachamonTextureTokens
+                            .getInstance()
+                            .getLanguage()
+                            .getCommandCategory()
+                            .getSuccessfullySendToken()
+                            .replaceAll("\\{player}", player.getName())
+                            .replaceAll("\\{token}", token));
         } catch (Exception e) {
-            e.printStackTrace();
+            RachamonTextureTokens
+                    .getInstance()
+                    .sendMessage(source, RachamonTextureTokens
+                            .getInstance()
+                            .getLanguage()
+                            .getGeneralCategory()
+                            .getInvalidTokenKey());
         }
 
         return CommandResult.success();
@@ -57,10 +65,6 @@ public class TextureTokensGive implements ICommand, IParameterizedCommand {
 
     @Override
     public CommandElement[] getArguments() {
-        return new CommandElement[]{
-                new GetTexturesKeyCommandElement(Text.of("token")),
-                GenericArguments.optional(GenericArguments.player(Text.of("name"))),
-                GenericArguments.optional(GenericArguments.integer(Text.of("amount")))
-        };
+        return new CommandElement[]{new GetTexturesKeyCommandElement(Text.of("token")), GenericArguments.optional(GenericArguments.player(Text.of("name"))), GenericArguments.optional(GenericArguments.integer(Text.of("amount")))};
     }
 }
