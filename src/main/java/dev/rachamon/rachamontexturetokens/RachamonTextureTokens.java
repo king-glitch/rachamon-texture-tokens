@@ -7,6 +7,7 @@ import dev.rachamon.api.sponge.config.SpongeAPIConfigFactory;
 import dev.rachamon.api.sponge.implement.plugin.IRachamonPlugin;
 import dev.rachamon.api.sponge.implement.plugin.IRachamonPluginManager;
 import dev.rachamon.api.sponge.util.LoggerUtil;
+import dev.rachamon.api.sponge.util.TextUtil;
 import dev.rachamon.rachamontexturetokens.config.MainConfig;
 import dev.rachamon.rachamontexturetokens.config.MainLanguage;
 import dev.rachamon.rachamontexturetokens.config.MainTextureConfig;
@@ -15,6 +16,7 @@ import dev.rachamon.rachamontexturetokens.managers.RachamonTextureTokensPluginMa
 import ninja.leaping.configurate.objectmapping.GuiceObjectMapperFactory;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.config.ConfigDir;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.Order;
@@ -31,9 +33,7 @@ import java.nio.file.Path;
 /**
  * The type Rachamon texture tokens.
  */
-@Plugin(id = "rachamontexturetokens", name = "RachamonTextureTokens", description = "Simple Pixelmon Texture applier.", authors = {"Rachamon"}, dependencies = {
-        @Dependency(id = "pixelmon")
-})
+@Plugin(id = "rachamontexturetokens", name = "RachamonTextureTokens", description = "Simple Pixelmon Texture applier.", authors = {"Rachamon"}, dependencies = {@Dependency(id = "after:pixelmon")})
 public class RachamonTextureTokens implements IRachamonPlugin {
     private Components components;
     @Inject
@@ -57,12 +57,6 @@ public class RachamonTextureTokens implements IRachamonPlugin {
     private SpongeAPIConfigFactory<RachamonTextureTokens, MainConfig> config;
     private SpongeAPIConfigFactory<RachamonTextureTokens, MainLanguage> language;
     private SpongeAPIConfigFactory<RachamonTextureTokens, MainTextureConfig> textures;
-
-    /**
-     * Instantiates a new Rachamon texture tokens.
-     */
-    public RachamonTextureTokens() {
-    }
 
     /**
      * On pre initialize.
@@ -300,6 +294,14 @@ public class RachamonTextureTokens implements IRachamonPlugin {
      */
     public RachamonTextureTokenManager getRachamonTextureTokenManager() {
         return this.getComponents().textureTokensManager;
+    }
+
+    public void sendMessage(CommandSource source, String message) {
+        source.sendMessage(TextUtil.toText(RachamonTextureTokens
+                .getInstance()
+                .getLanguage()
+                .getGeneralCategory()
+                .getPrefix() + message));
     }
 
     /**

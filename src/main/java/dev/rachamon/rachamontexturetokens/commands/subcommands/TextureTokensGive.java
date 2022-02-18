@@ -1,7 +1,9 @@
 package dev.rachamon.rachamontexturetokens.commands.subcommands;
 
 import dev.rachamon.api.sponge.implement.command.*;
+import dev.rachamon.api.sponge.util.TextUtil;
 import dev.rachamon.rachamontexturetokens.RachamonTextureTokens;
+import dev.rachamon.rachamontexturetokens.commands.elements.GetTexturesKeyCommandElement;
 import org.spongepowered.api.command.CommandException;
 import org.spongepowered.api.command.CommandResult;
 import org.spongepowered.api.command.CommandSource;
@@ -39,7 +41,13 @@ public class TextureTokensGive implements ICommand, IParameterizedCommand {
 
         try {
             RachamonTextureTokens.getInstance().getRachamonTextureTokenManager().giveTokens(player, token, amount);
-
+            RachamonTextureTokens.getInstance().sendMessage(source, RachamonTextureTokens
+                    .getInstance()
+                    .getLanguage()
+                    .getCommandCategory()
+                    .getSuccessfullySendToken()
+                    .replaceAll("\\{player}", player.getName())
+                    .replaceAll("\\{token}", token));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -50,7 +58,7 @@ public class TextureTokensGive implements ICommand, IParameterizedCommand {
     @Override
     public CommandElement[] getArguments() {
         return new CommandElement[]{
-                GenericArguments.string(Text.of("token")),
+                new GetTexturesKeyCommandElement(Text.of("token")),
                 GenericArguments.optional(GenericArguments.player(Text.of("name"))),
                 GenericArguments.optional(GenericArguments.integer(Text.of("amount")))
         };

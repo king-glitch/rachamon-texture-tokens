@@ -70,13 +70,15 @@ public class RachamonTextureTokenManager {
         MainTextureConfig.TextureToken token = this.getTokenOrThrow(key);
 
         ItemStack stack = ItemStack.of(this.getItemTypeOrThrow(token.getItemId()), amount);
-        stack.offer(Keys.DISPLAY_NAME, TextUtil.toText(token.getItemDisplayName()));
+        stack.offer(Keys.DISPLAY_NAME, TextUtil.toText(token
+                .getItemDisplayName()
+                .replaceAll("\\{pokemon}", token.getPokemonAllowed())));
         stack.offer(Keys.ITEM_DURABILITY, 1000);
 
         ArrayList<Text> realLore = new ArrayList<>();
 
         for (String line : token.getItemLore()) {
-            realLore.add(TextUtil.toText(line));
+            realLore.add(TextUtil.toText(line.replaceAll("\\{pokemon}", token.getPokemonAllowed())));
         }
 
         stack.offer(Keys.ITEM_LORE, realLore);
@@ -84,19 +86,27 @@ public class RachamonTextureTokenManager {
         DataContainer container = stack.toContainer();
         container.set(DataQuery.of("UnsafeData", "TextureTokens", "pokemon"), token.getPokemonAllowed());
         container.set(DataQuery.of("UnsafeData", "TextureTokens", "texture"), token.getCustomTexture());
+        container.set(DataQuery.of("UnsafeData", "ModType"), "RachamonTextureTokens");
 
         stack = ItemStack.builder().fromContainer(container).build();
 
-        InventoryTransactionResult result = source.getInventory()
+        InventoryTransactionResult result = source
+                .getInventory()
                 .query(QueryOperationTypes.INVENTORY_TYPE.of(Hotbar.class))
-                .union(source.getInventory().query(QueryOperationTypes.INVENTORY_TYPE.of(MainPlayerInventory.class))).offer(stack);
+                .union(source.getInventory().query(QueryOperationTypes.INVENTORY_TYPE.of(MainPlayerInventory.class)))
+                .offer(stack);
 
         if (result.getType() != InventoryTransactionResult.Type.SUCCESS) {
             this.plugin.getLogger().info("Can't send Item stack");
             return;
         }
 
-        this.plugin.getLogger().info("Successfully sent Item to player");
+        source.sendMessage(TextUtil.toText(RachamonTextureTokens
+                .getInstance()
+                .getLanguage()
+                .getGeneralCategory()
+                .getSuccessfullyRetrieveToken()
+                .replaceAll("\\{token}", token.getItemDisplayName())));
 
     }
 

@@ -1,65 +1,72 @@
 buildscript {
     repositories {
-        mavenCentral()
-        maven {
-            name = 'forge'
-            url = 'https://files.minecraftforge.net/maven'
-        }
-        maven {
-            url = 'https://plugins.gradle.org/m2/'
-        }
+        maven { url = "https://files.minecraftforge.net/maven" }
     }
     dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '4.+', changing: true
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
     }
 }
+
 plugins {
-    id 'org.spongepowered.plugin' version '0.9.0'
+    id 'java'
     id 'com.github.johnrengelman.shadow' version '6.1.0'
 }
-allprojects {
-    apply plugin: 'net.minecraftforge.gradle'
-    apply plugin: 'org.spongepowered.plugin'
-    apply plugin: 'java'
-}
+
+apply plugin: 'net.minecraftforge.gradle'
+
+version = modVersion
+group = modGroup
 
 minecraft {
-    mappings channel: 'snapshot', version: '20180814-1.12'
+    mappings channel: 'snapshot' as String, version: '20180814-1.12'
 }
 
 repositories {
     mavenCentral()
-    maven { url 'https://jitpack.io' }
-    maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
     maven {
-        name = "forge"
-        url = "https://files.minecraftforge.net/maven"
+        name = 'sponge-repo'
+        url = 'https://repo.spongepowered.org/maven'
     }
-    flatDir {
-        dirs './libs/'
+    maven {
+        url 'https://jitpack.io'
+    }
+    ivy {
+        name = 'Pixelmon Reforged'
+        url "https://download.nodecdn.net/containers/reforged/server/release"
+        metadataSources {
+            artifact()
+        }
+        patternLayout {
+            artifact "[revision]/[artifact].[ext]"
+        }
     }
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.12.2-14.23.5.2860'
+    minecraft 'net.minecraftforge:forge:' + forgeVersion
+    compileOnly 'org.spongepowered:spongeapi:' + spongeVersion
+    compileOnly 'pixelmon:Pixelmon-1.12.2-' + pixelmonVersion + '-server:' + pixelmonVersion
     shadow 'com.github.king-glitch:sponge-plugin-api:9440145'
-    compileOnly('com.pixelmonmod.pixelmon:Pixelmon-1.12.2-8.3.6-server:1.0')
-    compileOnly('net.minecraftforge:forge:1.12.2-14.23.5.2860')
-    compile 'org.spongepowered:spongeapi:7.4.0'
-    annotationProcessor 'org.spongepowered:spongeapi:7.4.0'
 }
 
 
 shadowJar {
     configurations = [project.configurations.shadow]
-    exclude "**/module-info.class"
-    exclude "**/overview.html"
-    exclude "**/overviewj.html"
+    classifier ''
 }
 
-jar.finalizedBy('reobfJar')
+reobf {
+    shadowJar {
 
-build.dependsOn shadowJar
-group = 'dev.rachamon'
-version = '0.0.1-SNAPSHOT'
-sponge.plugin.id = 'rachamontexturetokens'
+    }
+}
+
+processResources {
+    filesMatching("mcmod.info") {
+        expand(
+                'version': project.modVersion,
+                'mcversion': project.mcVersion
+        )
+    }
+}
+

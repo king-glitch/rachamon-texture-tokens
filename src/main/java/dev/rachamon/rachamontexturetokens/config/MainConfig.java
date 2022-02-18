@@ -28,8 +28,11 @@ public class MainConfig {
         /**
          * The Is debug.
          */
-        @Setting(comment = "is logging", value = "is-debug")
+        @Setting(comment = "is logging [default: true]", value = "is-debug")
         protected boolean isDebug = true;
+
+        @Setting(comment = "is allow to use on shiny pokemon [default: false]", value = "is-allow-on-shiny")
+        protected boolean isAllowOnShiny = false;
 
         /**
          * Is debug boolean.
@@ -38,6 +41,10 @@ public class MainConfig {
          */
         public boolean isDebug() {
             return isDebug;
+        }
+
+        public boolean isAllowOnShiny() {
+            return isAllowOnShiny;
         }
     }
 }

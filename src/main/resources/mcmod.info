@@ -1,0 +1,18 @@
+[
+  {
+    "modid": "rachamontexturetokens",
+    "name": "RachamonTexturetokens",
+    "description": "Simple Pixelmon Skin Applier",
+    "version": "${version}",
+    "mcVersion": "${mcversion}",
+    "url": "https://github.com/king-glitch/rachamon-texture-tokens",
+    "updateUrl": "https://github.com/king-glitch/rachamon-texture-tokens/releases",
+    "authorList": [
+      "Rachamon"
+    ],
+    "credits": "",
+    "logoFile": "",
+    "screenshots": [],
+    "dependencies": []
+  }
+]

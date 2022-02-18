@@ -30,7 +30,7 @@ public class MainTextureConfig {
          * The Item id.
          */
         @Setting(value = "item-id")
-        protected String itemId = "minecraft:stick";
+        protected String itemId = "minecraft:diamond";
         /**
          * The Item display name.
          */

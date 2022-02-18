@@ -28,6 +28,11 @@ public class MainLanguage {
      * The type General category.
      */
     public static class GeneralCategory {
+
+
+        @Setting(value = "prefix", comment = "message prefix")
+        protected String prefix = "&8[&cRachamonTextureTokens&8]&8:&7 ";
+
         /**
          * The Pokemon doesnt have texture.
          */
@@ -35,68 +40,58 @@ public class MainLanguage {
                 "variables:\n" +
                 " - {token}: token name\n" +
                 " - {pokemon}: pokemon name")
-        protected String pokemonDoesntHaveTexture = "You can't apply this {token} on this {pokemon}\n" +
-                "variables:\n" +
-                " - {token}: token name\n" +
-                " - {pokemon}: pokemon name";
+        protected String pokemonDoesntHaveTexture = "&cYou can't apply this &4&l{token}&c on this &4&l{pokemon}";
         /**
          * The Pokemon already has texture.
          */
         @Setting(value = "pokemon-already-has-texture", comment = "Message when apply token key with same pokemon with the same texture")
-        protected String pokemonAlreadyHasTexture = "This pokemon already has this texture!";
+        protected String pokemonAlreadyHasTexture = "&cThis pokemon already has this texture!";
         /**
-         * The Successfully apply texture on pokemon.
+         * The Successfully apply texture on Pokemon.
          */
         @Setting(value = "successfully-apply-texture-on-pokemon", comment = "Message when apply token successfully\n+" +
                 "variables:\n" +
                 " - {token}: token name\n" +
                 " - {pokemon}: pokemon name")
-        protected String successfullyApplyTextureOnPokemon = "Successfully apply {token} token on {pokemon}";
+        protected String successfullyApplyTextureOnPokemon = "&aSuccessfully apply &2&l{token}&a token on &2&l{pokemon}";
         /**
          * The Successfully retrieve token.
          */
         @Setting(value = "successfully-retrieve-token", comment = "message when retrieved token\n" +
                 "variables:\n" +
                 " - {token}: token name")
-        protected String successfullyRetrieveToken = "You successfully retrieved {token} token!";
-        /**
-         * The Successfully send token.
-         */
-        @Setting(value = "successfully-send-token", comment = "message when token was sent to another player\n" +
-                "variables:\n" +
-                " - {token}: token name\n" +
-                " - {player}: player name")
-        protected String successfullySendToken = "You successfully sent {token} token to {player}";
+        protected String successfullyRetrieveToken = "&aYou successfully retrieved &2&l{token}&a token!";
+
         /**
          * The Invalid token usage.
          */
         @Setting(value = "invalid-token-usage", comment = "Message token was wrongly used.")
-        protected String invalidTokenUsage = "Invalid Token Usage";
+        protected String invalidTokenUsage = "&cInvalid Token Usage. This Token can't use on this pokemon.";
         /**
          * The Invalid token key.
          */
         @Setting(value = "invalid-token-key", comment = "Message wrong token key")
-        protected String invalidTokenKey = "Invalid token key, please check the config key name";
+        protected String invalidTokenKey = "&cInvalid token key, please check the config key name";
         /**
          * The Token no longer valid.
          */
         @Setting(value = "token-no-longer-valid", comment = "Message when token is invalid")
-        protected String tokenNoLongerValid = "This token is no longer valid";
+        protected String tokenNoLongerValid = "&cThis token is no longer valid";
         /**
          * The Player is not online nor invalid.
          */
         @Setting(value = "player-is-not-online-or-invalid", comment = "Message player is not online or invalid")
-        protected String playerIsNotOnlineNorInvalid = "Invalid Player, please make sure they're online.";
+        protected String playerIsNotOnlineNorInvalid = "&cInvalid Player, please make sure they're online.";
         /**
          * The Cant use on shiny pokemon.
          */
         @Setting(value = "cant-use-on-shiny-pokemon", comment = "Message when apply token on shiny pokemon")
-        protected String cantUseOnShinyPokemon = "This pokemon is shiny, you can't apply this texture to a shiny";
+        protected String cantUseOnShinyPokemon = "&cThis pokemon is shiny, you can't apply this texture to a shiny";
 
         /**
          * Gets pokemon doesnt have texture.
          *
-         * @return the pokemon doesnt have texture
+         * @return the pokemon doesn't have texture
          */
         public String getPokemonDoesntHaveTexture() {
             return pokemonDoesntHaveTexture;
@@ -123,19 +118,14 @@ public class MainLanguage {
         /**
          * Gets successfully retrieve token.
          *
-         * @return the successfully retrieve token
+         * @return the successful retrieve token
          */
         public String getSuccessfullyRetrieveToken() {
             return successfullyRetrieveToken;
         }
 
-        /**
-         * Gets successfully send token.
-         *
-         * @return the successfully send token
-         */
-        public String getSuccessfullySendToken() {
-            return successfullySendToken;
+        public String getPrefix() {
+            return prefix;
         }
 
         /**
@@ -187,13 +177,19 @@ public class MainLanguage {
     /**
      * The type Command category.
      */
-    static class CommandCategory {
+    public static class CommandCategory {
 
         /**
          * The Successfully reloaded config.
          */
         @Setting(value = "successfully-reloaded-config", comment = "Message reloaded configs")
-        protected String successfullyReloadedConfig = "Successfully reloaded Configs";
+        protected String successfullyReloadedConfig = "&aSuccessfully reloaded Configs";
+
+        @Setting(value = "successfully-send-token", comment = "message when token was sent to another player\n" +
+                "variables:\n" +
+                " - {token}: token name\n" +
+                " - {player}: player name")
+        protected String successfullySendToken = "&aYou successfully sent &2&l{token}&a token to &2&l{player}";
 
         /**
          * Gets successfully reloaded config.
@@ -202,6 +198,10 @@ public class MainLanguage {
          */
         public String getSuccessfullyReloadedConfig() {
             return successfullyReloadedConfig;
+        }
+
+        public String getSuccessfullySendToken() {
+            return successfullySendToken;
         }
 
     }
