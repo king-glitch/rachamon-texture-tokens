@@ -24,7 +24,7 @@ public class PokemonTokenInteract {
      * @param event the event
      */
 
-    @Listener
+    @Listener()
     public void onTokenPokemonInteract(InteractEntityEvent.Secondary.MainHand event, @Root Player player) {
 
         if (!(event.getTargetEntity() instanceof EntityPixelmon)) {
@@ -52,6 +52,8 @@ public class PokemonTokenInteract {
                 .equals("RachamonTextureTokens")) {
             return;
         }
+
+        event.setCancelled(true);
 
         if (pixelmon.getPokemonData().getOwnerPlayerUUID() == null) {
             return;
