@@ -6,6 +6,7 @@ import org.spongepowered.api.data.DataQuery;
 import org.spongepowered.api.data.type.HandTypes;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Listener;
+import org.spongepowered.api.event.Order;
 import org.spongepowered.api.event.entity.InteractEntityEvent;
 import org.spongepowered.api.event.filter.cause.Root;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -24,7 +25,7 @@ public class PokemonTokenInteract {
      * @param event the event
      */
 
-    @Listener()
+    @Listener(order = Order.EARLY)
     public void onTokenPokemonInteract(InteractEntityEvent.Secondary.MainHand event, @Root Player player) {
 
         if (!(event.getTargetEntity() instanceof EntityPixelmon)) {
@@ -132,8 +133,6 @@ public class PokemonTokenInteract {
                         .getSuccessfullyApplyTextureOnPokemon()
                         .replaceAll("\\{pokemon}", pixelmon.getPokemonName())
                         .replaceAll("\\{token}", tokenName.get().toString()));
-
-        event.setCancelled(true);
 
 
     }
