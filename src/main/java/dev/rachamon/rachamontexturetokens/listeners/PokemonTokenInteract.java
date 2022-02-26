@@ -78,7 +78,7 @@ public class PokemonTokenInteract {
             return;
         }
 
-        if (!tokenPokemon.get().toString().equalsIgnoreCase(pixelmon.getSpecies().getPokemonName())) {
+        if (!tokenPokemon.get().toString().contains(pixelmon.getSpecies().getPokemonName())) {
             RachamonTextureTokens
                     .getInstance()
                     .sendMessage(player, RachamonTextureTokens
