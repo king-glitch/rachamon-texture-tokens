@@ -36,10 +36,7 @@ public class MainLanguage {
         /**
          * The Pokemon doesnt have texture.
          */
-        @Setting(value = "pokemon-doesnt-have-texture", comment = "Message when apply token on wrong pokemon\n" +
-                "variables:\n" +
-                " - {token}: token name\n" +
-                " - {pokemon}: pokemon name")
+        @Setting(value = "pokemon-doesnt-have-texture", comment = "Message when apply token on wrong pokemon\n" + "variables:\n" + " - {token}: token name\n" + " - {pokemon}: pokemon name")
         protected String pokemonDoesntHaveTexture = "&cYou can't apply this &4&l{token}&c on this &4&l{pokemon}";
         /**
          * The Pokemon already has texture.
@@ -49,17 +46,12 @@ public class MainLanguage {
         /**
          * The Successfully apply texture on Pokemon.
          */
-        @Setting(value = "successfully-apply-texture-on-pokemon", comment = "Message when apply token successfully\n+" +
-                "variables:\n" +
-                " - {token}: token name\n" +
-                " - {pokemon}: pokemon name")
+        @Setting(value = "successfully-apply-texture-on-pokemon", comment = "Message when apply token successfully\n+" + "variables:\n" + " - {token}: token name\n" + " - {pokemon}: pokemon name")
         protected String successfullyApplyTextureOnPokemon = "&aSuccessfully apply &2&l{token}&a token on &2&l{pokemon}";
         /**
          * The Successfully retrieve token.
          */
-        @Setting(value = "successfully-retrieve-token", comment = "message when retrieved token\n" +
-                "variables:\n" +
-                " - {token}: token name")
+        @Setting(value = "successfully-retrieve-token", comment = "message when retrieved token\n" + "variables:\n" + " - {token}: token name")
         protected String successfullyRetrieveToken = "&aYou successfully retrieved &2&l{token}&a token!";
 
         /**
@@ -185,10 +177,7 @@ public class MainLanguage {
         @Setting(value = "successfully-reloaded-config", comment = "Message reloaded configs")
         protected String successfullyReloadedConfig = "&aSuccessfully reloaded Configs";
 
-        @Setting(value = "successfully-send-token", comment = "message when token was sent to another player\n" +
-                "variables:\n" +
-                " - {token}: token name\n" +
-                " - {player}: player name")
+        @Setting(value = "successfully-send-token", comment = "message when token was sent to another player\n" + "variables:\n" + " - {token}: token name\n" + " - {player}: player name")
         protected String successfullySendToken = "&aYou successfully sent &2&l{token}&a token to &2&l{player}";
 
         /**

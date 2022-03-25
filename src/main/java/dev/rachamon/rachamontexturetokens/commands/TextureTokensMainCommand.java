@@ -14,10 +14,7 @@ import javax.annotation.Nonnull;
 /**
  * The type Texture tokens main command.
  */
-@ICommandChildren({
-        TextureTokensGive.class,
-        TextureTokensReload.class
-})
+@ICommandChildren({TextureTokensGive.class, TextureTokensReload.class})
 @ICommandAliases({"texturetokens", "texturetoken", "texture"})
 @ICommandHelpText(title = "Main Texture Tokens Help", command = "help")
 @ICommandPermission("rachamontexturetokens.command.base")

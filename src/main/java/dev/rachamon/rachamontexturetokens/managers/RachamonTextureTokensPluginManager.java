@@ -21,8 +21,9 @@ public class RachamonTextureTokensPluginManager implements IRachamonPluginManage
     @Override
     public void initialize() {
         this.plugin.setComponents(new RachamonTextureTokens.Components());
-        this.plugin.setPluginInjector(this.plugin.getSpongeInjector()
-                                                 .createChildInjector(new RachamonTextureTokensModule()));
+        this.plugin.setPluginInjector(this.plugin
+                .getSpongeInjector()
+                .createChildInjector(new RachamonTextureTokensModule()));
         this.plugin.getSpongeInjector().injectMembers(this.plugin.getComponents());
         Sponge.getEventManager().registerListeners(this.plugin, new PokemonTokenInteract());
         this.plugin.setInitialized(true);
@@ -70,11 +71,13 @@ public class RachamonTextureTokensPluginManager implements IRachamonPluginManage
                 .setClazz(new MainConfig())
                 .setClazzType(MainConfig.class)
                 .build());
+
         this.plugin.setLanguage(language
                 .setHeader("Language Config")
                 .setClazz(new MainLanguage())
                 .setClazzType(MainLanguage.class)
                 .build());
+
         this.plugin.setTextures(textures
                 .setHeader("Pokemon Textures Config")
                 .setClazz(new MainTextureConfig())

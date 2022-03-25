@@ -68,7 +68,7 @@ public class RachamonTextureTokens implements IRachamonPlugin {
         instance = this;
         this.pluginManager = new RachamonTextureTokensPluginManager();
         this.setLogger(new LoggerUtil(Sponge.getServer()));
-        this.getLogger().info("On Pre Initialize YanamiBot...");
+        this.getLogger().info("On Pre Initialize RachamonTextureToken...");
     }
 
     /**
@@ -78,8 +78,8 @@ public class RachamonTextureTokens implements IRachamonPlugin {
      */
     @Listener(order = Order.EARLY)
     public void onInitialize(GameInitializationEvent event) {
-        getInstance().getLogger().info("On Initialize YanamiBot...");
-        getInstance().getPluginManager().initialize();
+        RachamonTextureTokens.getInstance().getLogger().info("On Initialize RachamonTextureToken...");
+        RachamonTextureTokens.getInstance().getPluginManager().initialize();
     }
 
     /**
@@ -90,8 +90,8 @@ public class RachamonTextureTokens implements IRachamonPlugin {
     @Listener
     public void onStart(GameStartedServerEvent event) {
         if (!this.isInitialized()) return;
-        getInstance().getLogger().info("On Start YanamiBot...");
-        getInstance().getPluginManager().start();
+        RachamonTextureTokens.getInstance().getLogger().info("On Start RachamonTextureToken...");
+        RachamonTextureTokens.getInstance().getPluginManager().start();
     }
 
     /**
@@ -101,8 +101,8 @@ public class RachamonTextureTokens implements IRachamonPlugin {
      */
     @Listener
     public void onPostInitialize(GamePostInitializationEvent event) {
-        getInstance().getLogger().info("On Post Initialize YanamiBot");
-        getInstance().getPluginManager().postInitialize();
+        RachamonTextureTokens.getInstance().getLogger().info("On Post Initialize RachamonTextureToken");
+        RachamonTextureTokens.getInstance().getPluginManager().postInitialize();
     }
 
     @Override

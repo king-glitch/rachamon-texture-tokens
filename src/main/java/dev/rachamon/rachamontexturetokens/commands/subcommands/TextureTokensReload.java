@@ -25,10 +25,13 @@ public class TextureTokensReload implements ICommand, IParameterizedCommand {
         try {
             RachamonTextureTokens.getInstance().getPluginManager().reload();
 
-            RachamonTextureTokens.getInstance().sendMessage(source, RachamonTextureTokens
+            RachamonTextureTokens
                     .getInstance()
-                    .getLanguage()
-                    .getCommandCategory().getSuccessfullyReloadedConfig());
+                    .sendMessage(source, RachamonTextureTokens
+                            .getInstance()
+                            .getLanguage()
+                            .getCommandCategory()
+                            .getSuccessfullyReloadedConfig());
             return CommandResult.success();
         } catch (Exception e) {
             e.printStackTrace();

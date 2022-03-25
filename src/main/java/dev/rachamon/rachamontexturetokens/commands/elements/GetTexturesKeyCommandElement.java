@@ -33,7 +33,10 @@ public class GetTexturesKeyCommandElement extends CommandElement {
         Set<String> keys = RachamonTextureTokens.getInstance().getTextures().getRoot().getTokens().keySet();
         try {
             String next = args.next();
-            return keys.stream().filter(key -> key.startsWith(next)).collect(Collectors.toList());
+            return keys
+                    .stream()
+                    .filter(key -> key.toLowerCase().startsWith(next.toLowerCase()))
+                    .collect(Collectors.toList());
         } catch (ArgumentParseException e) {
             e.printStackTrace();
         }
