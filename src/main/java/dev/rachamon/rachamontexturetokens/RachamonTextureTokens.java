@@ -60,7 +60,7 @@ public class RachamonTextureTokens extends RachamonSpongePluginProvider implemen
     private SpongeAPIConfigFactory<RachamonTextureTokens, MainTextureConfig> textures;
 
     public RachamonTextureTokens() {
-        super("RachamonTextureTokens", false);
+        super("RachamonTextureTokens");
     }
 
     /**
@@ -72,7 +72,7 @@ public class RachamonTextureTokens extends RachamonSpongePluginProvider implemen
     public void onPreInitialize(GamePreInitializationEvent event) {
         instance = this;
         this.pluginManager = new RachamonTextureTokensPluginManager();
-        this.setLogger(new LoggerUtil(Sponge.getServer()));
+        this.setLogger(new LoggerUtil(Sponge.getServer(), false));
         this.getLogger().info("On Pre Initialize RachamonTextureToken...");
     }
 

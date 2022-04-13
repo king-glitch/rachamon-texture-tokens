@@ -59,6 +59,7 @@ public class PokemonTokenInteract {
         }
 
         event.setCancelled(true);
+        this.plugin.getLogger().debug("set cancel event");
 
         if (pixelmon.getPokemonData().getOwnerPlayerUUID() == null) {
             this.plugin.getLogger().debug("no owner player uuid");
@@ -66,7 +67,11 @@ public class PokemonTokenInteract {
         }
 
         if (!pixelmon.getPokemonData().getOwnerPlayerUUID().equals(player.getUniqueId())) {
-            this.plugin.getLogger().debug("not owner player uuid");
+            this.plugin
+                    .getLogger()
+                    .debug("not owner player uuid " + pixelmon
+                            .getPokemonData()
+                            .getOwnerPlayerUUID() + " : " + player.getUniqueId());
             return;
         }
 
