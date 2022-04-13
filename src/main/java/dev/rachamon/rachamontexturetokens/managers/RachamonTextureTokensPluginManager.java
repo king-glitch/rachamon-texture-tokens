@@ -83,6 +83,7 @@ public class RachamonTextureTokensPluginManager implements IRachamonPluginManage
                 .setClazz(new MainTextureConfig())
                 .setClazzType(MainTextureConfig.class)
                 .build());
+
     }
 
     /**

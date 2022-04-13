@@ -6,6 +6,7 @@ import dev.rachamon.api.sponge.command.SpongeCommandService;
 import dev.rachamon.api.sponge.config.SpongeAPIConfigFactory;
 import dev.rachamon.api.sponge.implement.plugin.IRachamonPlugin;
 import dev.rachamon.api.sponge.implement.plugin.IRachamonPluginManager;
+import dev.rachamon.api.sponge.provider.RachamonSpongePluginProvider;
 import dev.rachamon.api.sponge.util.LoggerUtil;
 import dev.rachamon.api.sponge.util.TextUtil;
 import dev.rachamon.rachamontexturetokens.config.MainConfig;
@@ -34,7 +35,7 @@ import java.nio.file.Path;
  * The type Rachamon texture tokens.
  */
 @Plugin(id = "rachamontexturetokens", name = "RachamonTextureTokens", description = "Simple Pixelmon Texture applier.", authors = {"Rachamon"}, dependencies = {@Dependency(id = "after:pixelmon")})
-public class RachamonTextureTokens implements IRachamonPlugin {
+public class RachamonTextureTokens extends RachamonSpongePluginProvider implements IRachamonPlugin {
     private Components components;
     @Inject
     private Game game;
@@ -57,6 +58,11 @@ public class RachamonTextureTokens implements IRachamonPlugin {
     private SpongeAPIConfigFactory<RachamonTextureTokens, MainConfig> config;
     private SpongeAPIConfigFactory<RachamonTextureTokens, MainLanguage> language;
     private SpongeAPIConfigFactory<RachamonTextureTokens, MainTextureConfig> textures;
+
+    public RachamonTextureTokens() {
+        super("RachamonTextureTokens", false);
+        RachamonSpongePluginProvider.setIsDebug(true);
+    }
 
     /**
      * On pre initialize.
@@ -110,7 +116,6 @@ public class RachamonTextureTokens implements IRachamonPlugin {
         return this.logger;
     }
 
-    @Override
     public void setLogger(LoggerUtil logger) {
         this.logger = logger;
     }
@@ -160,7 +165,6 @@ public class RachamonTextureTokens implements IRachamonPlugin {
         this.isInitialized = isInitialized;
     }
 
-    @Override
     public void setPluginInjector(Injector injector) {
         this.injector = injector;
     }

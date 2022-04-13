@@ -19,6 +19,8 @@ import java.util.Optional;
 
 public class PokemonTokenInteract {
 
+    private final RachamonTextureTokens plugin = RachamonTextureTokens.getInstance();
+
     /**
      * On token pokemon interact.
      *
@@ -41,6 +43,7 @@ public class PokemonTokenInteract {
         }
 
         if (!itemStack.get().toContainer().get(DataQuery.of("UnsafeData", "ModType")).isPresent()) {
+            this.plugin.getLogger().debug("no item unsafe mod type");
             return;
         }
 
@@ -51,16 +54,19 @@ public class PokemonTokenInteract {
                 .get()
                 .toString()
                 .equals("RachamonTextureTokens")) {
+            this.plugin.getLogger().debug("not token item stack");
             return;
         }
 
         event.setCancelled(true);
 
         if (pixelmon.getPokemonData().getOwnerPlayerUUID() == null) {
+            this.plugin.getLogger().debug("no owner player uuid");
             return;
         }
 
-        if (pixelmon.getPokemonData().getOwnerPlayerUUID() != player.getUniqueId()) {
+        if (!pixelmon.getPokemonData().getOwnerPlayerUUID().equals(player.getUniqueId())) {
+            this.plugin.getLogger().debug("not owner player uuid");
             return;
         }
 
@@ -68,6 +74,7 @@ public class PokemonTokenInteract {
                 .get()
                 .toContainer()
                 .get(DataQuery.of("UnsafeData", "TextureTokens", "texture"));
+
         Optional<Object> tokenPokemon = itemStack
                 .get()
                 .toContainer()
@@ -75,6 +82,7 @@ public class PokemonTokenInteract {
 
 
         if (!tokenName.isPresent() || !tokenPokemon.isPresent()) {
+            this.plugin.getLogger().debug("no token name nor token Pokemon");
             return;
         }
 
