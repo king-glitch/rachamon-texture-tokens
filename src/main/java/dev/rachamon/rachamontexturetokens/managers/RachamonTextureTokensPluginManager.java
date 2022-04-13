@@ -3,6 +3,7 @@ package dev.rachamon.rachamontexturetokens.managers;
 import dev.rachamon.api.sponge.config.SpongeAPIConfigFactory;
 import dev.rachamon.api.sponge.exception.AnnotatedCommandException;
 import dev.rachamon.api.sponge.implement.plugin.IRachamonPluginManager;
+import dev.rachamon.api.sponge.provider.RachamonSpongePluginProvider;
 import dev.rachamon.rachamontexturetokens.RachamonTextureTokens;
 import dev.rachamon.rachamontexturetokens.RachamonTextureTokensModule;
 import dev.rachamon.rachamontexturetokens.commands.TextureTokensMainCommand;
@@ -84,6 +85,7 @@ public class RachamonTextureTokensPluginManager implements IRachamonPluginManage
                 .setClazzType(MainTextureConfig.class)
                 .build());
 
+        RachamonSpongePluginProvider.setIsDebug(this.plugin.getConfig().getRoot().getMainCategorySetting().isDebug());
     }
 
     /**

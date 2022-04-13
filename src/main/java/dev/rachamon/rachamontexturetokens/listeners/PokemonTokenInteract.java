@@ -86,10 +86,7 @@ public class PokemonTokenInteract {
             return;
         }
 
-        RachamonTextureTokens
-                .getInstance()
-                .getLogger()
-                .debug(tokenPokemon.get() + " " + pixelmon.getSpecies().getPokemonName());
+        this.plugin.getLogger().debug(tokenPokemon.get() + " " + pixelmon.getSpecies().getPokemonName());
 
         if (!tokenPokemon
                 .get()
@@ -97,40 +94,24 @@ public class PokemonTokenInteract {
                 .toLowerCase()
                 .contains(pixelmon.getSpecies().getPokemonName().toLowerCase())) {
 
-            RachamonTextureTokens
-                    .getInstance()
-                    .sendMessage(player, RachamonTextureTokens
-                            .getInstance()
-                            .getLanguage()
-                            .getGeneralCategory()
-                            .getInvalidTokenUsage());
+            this.plugin.sendMessage(player, this.plugin.getLanguage().getGeneralCategory().getInvalidTokenUsage());
             return;
         }
 
         if (pixelmon.getPokemonData().getCustomTexture().equalsIgnoreCase(tokenName.get().toString())) {
-            RachamonTextureTokens
-                    .getInstance()
-                    .sendMessage(player, RachamonTextureTokens
-                            .getInstance()
-                            .getLanguage()
-                            .getGeneralCategory()
-                            .getPokemonAlreadyHasTexture());
+            this.plugin.sendMessage(player, this.plugin
+                    .getLanguage()
+                    .getGeneralCategory()
+                    .getPokemonAlreadyHasTexture());
             return;
         }
 
-        if (pixelmon.getPokemonData().isShiny() && !RachamonTextureTokens
-                .getInstance()
+        if (pixelmon.getPokemonData().isShiny() && !this.plugin
                 .getConfig()
                 .getRoot()
                 .getMainCategorySetting()
                 .isAllowOnShiny()) {
-            RachamonTextureTokens
-                    .getInstance()
-                    .sendMessage(player, RachamonTextureTokens
-                            .getInstance()
-                            .getLanguage()
-                            .getGeneralCategory()
-                            .getCantUseOnShinyPokemon());
+            this.plugin.sendMessage(player, this.plugin.getLanguage().getGeneralCategory().getCantUseOnShinyPokemon());
             return;
         }
 
@@ -142,15 +123,12 @@ public class PokemonTokenInteract {
 
         pixelmon.getPokemonData().setCustomTexture(tokenName.get().toString());
         itemStack.get().setQuantity(itemStack.get().getQuantity() - 1);
-        RachamonTextureTokens
-                .getInstance()
-                .sendMessage(player, RachamonTextureTokens
-                        .getInstance()
-                        .getLanguage()
-                        .getGeneralCategory()
-                        .getSuccessfullyApplyTextureOnPokemon()
-                        .replaceAll("\\{pokemon}", pixelmon.getPokemonName())
-                        .replaceAll("\\{token}", tokenName.get().toString()));
+        this.plugin.sendMessage(player, this.plugin
+                .getLanguage()
+                .getGeneralCategory()
+                .getSuccessfullyApplyTextureOnPokemon()
+                .replaceAll("\\{pokemon}", pixelmon.getPokemonName())
+                .replaceAll("\\{token}", tokenName.get().toString()));
 
 
     }

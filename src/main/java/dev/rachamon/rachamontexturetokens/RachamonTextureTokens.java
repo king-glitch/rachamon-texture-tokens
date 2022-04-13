@@ -61,7 +61,6 @@ public class RachamonTextureTokens extends RachamonSpongePluginProvider implemen
 
     public RachamonTextureTokens() {
         super("RachamonTextureTokens", false);
-        RachamonSpongePluginProvider.setIsDebug(true);
     }
 
     /**
