@@ -15,7 +15,15 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * The type Get textures key command element.
+ */
 public class GetTexturesKeyCommandElement extends CommandElement {
+    /**
+     * Instantiates a new Get textures key command element.
+     *
+     * @param key the key
+     */
     public GetTexturesKeyCommandElement(@Nullable Text key) {
         super(key);
     }

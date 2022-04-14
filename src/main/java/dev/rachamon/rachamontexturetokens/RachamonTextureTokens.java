@@ -58,6 +58,9 @@ public class RachamonTextureTokens extends RachamonSpongePluginProvider implemen
     private SpongeAPIConfigFactory<RachamonTextureTokens, MainLanguage> language;
     private SpongeAPIConfigFactory<RachamonTextureTokens, MainTextureConfig> textures;
 
+    /**
+     * Instantiates a new Rachamon texture tokens.
+     */
     public RachamonTextureTokens() {
         super("RachamonTextureTokens", Sponge.getServer());
     }
@@ -153,6 +156,11 @@ public class RachamonTextureTokens extends RachamonSpongePluginProvider implemen
         this.isInitialized = isInitialized;
     }
 
+    /**
+     * Sets plugin injector.
+     *
+     * @param injector the injector
+     */
     public void setPluginInjector(Injector injector) {
         this.injector = injector;
     }
@@ -288,6 +296,12 @@ public class RachamonTextureTokens extends RachamonSpongePluginProvider implemen
         return this.getComponents().textureTokensManager;
     }
 
+    /**
+     * Send message.
+     *
+     * @param source  the source
+     * @param message the message
+     */
     public void sendMessage(CommandSource source, String message) {
         source.sendMessage(TextUtil.toText(RachamonTextureTokens
                 .getInstance()

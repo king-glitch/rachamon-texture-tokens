@@ -31,6 +31,9 @@ public class MainConfig {
         @Setting(comment = "is logging [default: true]", value = "is-debug")
         protected boolean isDebug = true;
 
+        /**
+         * The Is allow on shiny.
+         */
         @Setting(comment = "is allow to use on shiny pokemon [default: false]", value = "is-allow-on-shiny")
         protected boolean isAllowOnShiny = false;
 
@@ -43,6 +46,11 @@ public class MainConfig {
             return isDebug;
         }
 
+        /**
+         * Is allow on shiny boolean.
+         *
+         * @return the boolean
+         */
         public boolean isAllowOnShiny() {
             return isAllowOnShiny;
         }

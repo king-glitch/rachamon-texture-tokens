@@ -16,7 +16,6 @@ import java.util.Optional;
 /**
  * The type Pokemon token interact.
  */
-
 public class PokemonTokenInteract {
 
     private final RachamonTextureTokens plugin = RachamonTextureTokens.getInstance();
@@ -24,9 +23,9 @@ public class PokemonTokenInteract {
     /**
      * On token pokemon interact.
      *
-     * @param event the event
+     * @param event  the event
+     * @param player the player
      */
-
     @Listener(order = Order.EARLY)
     public void onTokenPokemonInteract(InteractEntityEvent.Secondary.MainHand event, @Root Player player) {
 

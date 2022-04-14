@@ -30,6 +30,9 @@ public class MainLanguage {
     public static class GeneralCategory {
 
 
+        /**
+         * The Prefix.
+         */
         @Setting(value = "prefix", comment = "message prefix")
         protected String prefix = "&8[&cRachamonTextureTokens&8]&8:&7 ";
 
@@ -116,6 +119,11 @@ public class MainLanguage {
             return successfullyRetrieveToken;
         }
 
+        /**
+         * Gets prefix.
+         *
+         * @return the prefix
+         */
         public String getPrefix() {
             return prefix;
         }
@@ -177,6 +185,9 @@ public class MainLanguage {
         @Setting(value = "successfully-reloaded-config", comment = "Message reloaded configs")
         protected String successfullyReloadedConfig = "&aSuccessfully reloaded Configs";
 
+        /**
+         * The Successfully send token.
+         */
         @Setting(value = "successfully-send-token", comment = "message when token was sent to another player\n" + "variables:\n" + " - {token}: token name\n" + " - {player}: player name")
         protected String successfullySendToken = "&aYou successfully sent &2&l{token}&a token to &2&l{player}";
 
@@ -189,6 +200,11 @@ public class MainLanguage {
             return successfullyReloadedConfig;
         }
 
+        /**
+         * Gets successfully send token.
+         *
+         * @return the successfully send token
+         */
         public String getSuccessfullySendToken() {
             return successfullySendToken;
         }
