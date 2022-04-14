@@ -150,7 +150,7 @@ public class RachamonTextureTokens extends RachamonSpongePluginProvider implemen
     }
 
     @Override
-    public IRachamonPluginManager getPluginManager() {
+    public RachamonTextureTokensPluginManager getPluginManager() {
         return this.pluginManager;
     }
 
