@@ -50,7 +50,6 @@ public class RachamonTextureTokens extends RachamonSpongePluginProvider implemen
     private Path directory;
     @Inject
     private PluginContainer container;
-    private LoggerUtil logger;
     private static RachamonTextureTokens instance;
     private boolean isInitialized = false;
     private RachamonTextureTokensPluginManager pluginManager;
@@ -60,7 +59,7 @@ public class RachamonTextureTokens extends RachamonSpongePluginProvider implemen
     private SpongeAPIConfigFactory<RachamonTextureTokens, MainTextureConfig> textures;
 
     public RachamonTextureTokens() {
-        super("RachamonTextureTokens");
+        super("RachamonTextureTokens", Sponge.getServer());
     }
 
     /**
@@ -72,7 +71,6 @@ public class RachamonTextureTokens extends RachamonSpongePluginProvider implemen
     public void onPreInitialize(GamePreInitializationEvent event) {
         instance = this;
         this.pluginManager = new RachamonTextureTokensPluginManager();
-        this.setLogger(new LoggerUtil(Sponge.getServer(), false));
         this.getLogger().info("On Pre Initialize RachamonTextureToken...");
     }
 
@@ -108,15 +106,6 @@ public class RachamonTextureTokens extends RachamonSpongePluginProvider implemen
     public void onPostInitialize(GamePostInitializationEvent event) {
         RachamonTextureTokens.getInstance().getLogger().info("On Post Initialize RachamonTextureToken");
         RachamonTextureTokens.getInstance().getPluginManager().postInitialize();
-    }
-
-    @Override
-    public LoggerUtil getLogger() {
-        return this.logger;
-    }
-
-    public void setLogger(LoggerUtil logger) {
-        this.logger = logger;
     }
 
     @Override
